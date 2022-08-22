@@ -1,18 +1,9 @@
 import { LightningElement, api, track } from "lwc";
 
-const columns = [
-    { label: 'Product', 
-      fieldName: 'Name', 
-      cellAttributes: {
-            class: { fieldName: 'format' }
-      }
-    }
-];
 
 export default class Child extends LightningElement {
   @api data       = [];
   @track records  = [];
-  columns         = columns;
   searchKey       = '';
 
   connectedCallback(){
