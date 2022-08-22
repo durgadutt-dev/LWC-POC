@@ -1,0 +1,37 @@
+<template>
+	<lightning-input name="search" label="Search" type="search" placeholder="" onchange={handleSearch}></lightning-input>
+
+	<table class="slds-table slds-table_cell-buffer slds-table_bordered">
+		<thead>
+			<tr class="slds-line-height_reset">
+				<th class="cb-selection" scope="col">
+					<div class="slds-truncate">
+						<lightning-input class="select-all" type="checkbox" onclick={handleAllSelection} variant="label-hidden"
+							label="Select All">
+						</lightning-input>
+					</div>
+				</th>
+				<th class="" scope="col">
+					<div class="slds-truncate" title="Product">Product</div>
+				</th>
+			</tr>
+		</thead>
+		<tbody onclick={handleRecordSelection}>
+			<template for:each={records} for:item="record">
+				<tr class="slds-hint-parent" key={record.Id} if:false={record.IsHidden}>
+					<th scope="row">
+						<div class="slds-truncate" title="Cloudhub">
+							<lightning-input class="record-item" data-record-id={record.Id} checked={record.IsSelected}
+								type="checkbox" variant="label-hidden" label="Select All">
+							</lightning-input>
+						</div>
+					</th>
+					<td>
+						<div class="slds-truncate slds-text-color_success" if:true={record.IsNew}>{record.Name}</div>
+						<div class="slds-truncate" if:false={record.IsNew}>{record.Name}</div>
+					</td>
+				</tr>
+			</template>
+		</tbody>
+	</table>
+</template>
